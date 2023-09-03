@@ -20,7 +20,17 @@ const handler: Handler = async (
     .from("users")
     .select("title, description, url")
     .eq("subdomain", odieData.subdomain);
-  console.log(data, error);
+
+  console.log(odieData.env);
+  if (odieData.env && odieData.env !== "development") {
+    await supabase.rpc("increment_views", {
+      subdomain: odieData.subdomain,
+    });
+  }
+  await supabase.rpc("increment_views", {
+    subdomain: odieData.subdomain,
+  });
+
   return {
     statusCode: 200,
     body: JSON.stringify(data),
