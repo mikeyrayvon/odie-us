@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input {
+  @apply border border-gray-400 rounded py-0.5 px-1 w-full;
+}
+
+section {
+  @apply mb-4 p-4;
+}
+
+p {
+  @apply mb-1;
+}
+
+h2 {
+  @apply font-bold text-lg mb-1;
+}
