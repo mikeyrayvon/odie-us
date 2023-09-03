@@ -19,9 +19,12 @@ const Random = () => {
     return null;
   }
 
+  const rootUrl =
+    process.env.NODE_ENV === "development" ? "localhost:8888" : "odie.us";
+
   return (
     <div className="absolute top-[10px] right-[20px] z-1">
-      <a href={`http://${subdomain}.localhost:8888`} className="block p-1">
+      <a href={`https://${subdomain}.${rootUrl}`} className="block p-1">
         .
       </a>
     </div>
