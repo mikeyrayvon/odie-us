@@ -24,7 +24,7 @@ const Random = () => {
 
   return (
     <div className="absolute top-[10px] right-[20px] z-1">
-      <a href={`https://${subdomain}.${rootUrl}`} className="block p-1">
+      <a href={`${subdomain}.${rootUrl}`} className="block p-1">
         .
       </a>
     </div>
