@@ -8,8 +8,9 @@ const supabase = createClient(
 
 const handler = async (request: VercelRequest, response: VercelResponse) => {
   let { data, error } = await supabase
-    .from(process.env.REACT_APP_TABLE as string)
-    .select("title, description, subdomain");
+    .from("users")
+    .select("title, description, subdomain, views, timestamp")
+    .order("timestamp", { ascending: false });
 
   if (error) {
     response.status(500).send({ error: error.message });

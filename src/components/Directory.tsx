@@ -7,6 +7,7 @@ const Directory = () => {
       subdomain: string;
       title: string;
       description: string;
+      views: number;
     }[]
   >([]);
   const [error, setError] = useState("");
@@ -25,7 +26,7 @@ const Directory = () => {
   }, []);
 
   return (
-    <div className="App w-[90%] mx-auto lg:w-[1000px] my-12">
+    <div className="App w-[90%] mx-auto my-12">
       {error ? (
         <div className="fixed inset-0 flex justify-center items-center">
           <span>{error}</span>
@@ -38,16 +39,20 @@ const Directory = () => {
             </a>{" "}
             directory
           </h1>
-          <ul className="md:columns-2 lg:columns-3 break-all">
+          <ul className="md:columns-2 lg:columns-3 xl:columns-4">
             {odies?.map((odie) => {
               const url = `https://${odie.subdomain}.odie.us`;
               return (
-                <li key={odie.subdomain} className="flex flex-col mb-3">
-                  <a href={url} className="underline">
+                <li
+                  key={odie.subdomain}
+                  className="flex flex-col mb-3 block break-inside-avoid"
+                >
+                  <a href={url} className="underline text-blue-500 break-all">
                     {url}
                   </a>
-                  <span>{odie.title}</span>
+                  <span className="font-bold">{odie.title}</span>
                   <span>{odie.description}</span>
+                  <span className="text-xs">visits: {odie.views}</span>
                 </li>
               );
             })}
