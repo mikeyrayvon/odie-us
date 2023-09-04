@@ -9,8 +9,7 @@ const supabase = createClient(
 );
 
 const handler = async (request: VercelRequest, response: VercelResponse) => {
-  console.log(process.env.REACT_APP_TABLE);
-  if (!request.body) response.status(200).json({ error: "no data" });
+  if (!request.body) response.status(500).json({ error: "no data" });
 
   if (
     !request.body.url.includes("https://docs.google.com/document/d/") ||

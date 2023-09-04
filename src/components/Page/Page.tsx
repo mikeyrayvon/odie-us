@@ -7,7 +7,6 @@ const Page = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    console.log("calling useEffect");
     axios
       .post(`/api/get-odie`, {
         subdomain,

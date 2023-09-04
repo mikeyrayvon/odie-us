@@ -7,22 +7,13 @@ const supabase = createClient(
 );
 
 const handler = async (request: VercelRequest, response: VercelResponse) => {
-  if (!request.body) response.status(500).send({ body: "error: no data" });
-
   let { data, error } = await supabase
     .from(process.env.REACT_APP_TABLE as string)
-    .select("title, description, url")
-    .eq("subdomain", request.body.subdomain);
+    .select("title, description, subdomain");
 
   if (error) {
     response.status(500).send({ error: error.message });
     return;
-  }
-
-  if (request.body.env && request.body.env !== "development") {
-    await supabase.rpc("increment_views", {
-      subdomain: request.body.subdomain,
-    });
   }
 
   response.status(200).send(data);

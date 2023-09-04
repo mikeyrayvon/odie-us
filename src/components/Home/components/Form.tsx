@@ -67,7 +67,7 @@ const Form = () => {
               id="subdomain"
               placeholder="subdomain"
               value={subdomain}
-              onChange={(e) => setSubdomain(e.target.value)}
+              onChange={(e) => setSubdomain(e.target.value.toLowerCase())}
               required
             />{" "}
             <span className="inline-block ml-1 mt-1">.odie.us</span>
