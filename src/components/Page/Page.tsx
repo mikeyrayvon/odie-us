@@ -36,7 +36,7 @@ const Page = () => {
       .catch((err) => {
         setError(true);
       });
-  }, [exists, subdomain]);
+  }, [subdomain]);
 
   const deleteDeadOdie = () => {
     axios
