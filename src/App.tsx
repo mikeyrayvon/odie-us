@@ -8,7 +8,7 @@ let rootHostLength = process.env.NODE_ENV === "development" ? 1 : 2;
 function App() {
   const host = useMemo(() => window.location.host, []);
   return (
-    <div className="App w-[90%] mx-auto lg:w-[1000px]">
+    <div className="App">
       {host.split(".").length > rootHostLength ? <Page /> : <Home />}
       <Random />
     </div>

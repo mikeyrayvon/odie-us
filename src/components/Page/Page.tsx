@@ -75,7 +75,11 @@ const Page = () => {
     );
   }
 
-  return <div dangerouslySetInnerHTML={{ __html: contents }} />;
+  return (
+    <div className="mx-auto w-[90%]">
+      <div dangerouslySetInnerHTML={{ __html: contents }} />
+    </div>
+  );
 };
 
 export default Page;
