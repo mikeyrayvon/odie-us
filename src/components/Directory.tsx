@@ -45,9 +45,9 @@ const Directory = () => {
               return (
                 <li
                   key={odie.subdomain}
-                  className="flex flex-col mb-3 block break-inside-avoid"
+                  className="flex flex-col mb-3 block break-inside-avoid break-words"
                 >
-                  <a href={url} className="underline text-blue-500 break-all">
+                  <a href={url} className="underline text-blue-500">
                     {url}
                   </a>
                   <span className="font-bold">{odie.title}</span>
