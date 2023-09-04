@@ -14,6 +14,10 @@ p {
   @apply mb-1;
 }
 
+h1 {
+  @apply text-4xl font-bold mb-8;
+}
+
 h2 {
   @apply font-bold text-lg mb-1;
 }

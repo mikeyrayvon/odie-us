@@ -31,20 +31,28 @@ const Directory = () => {
           <span>{error}</span>
         </div>
       ) : (
-        <ul className="md:columns-2 lg:columns-3">
-          {odies?.map((odie) => {
-            const url = `https://${odie.subdomain}.odie.us`;
-            return (
-              <li key={odie.subdomain} className="flex flex-col mb-3">
-                <a href={url} className="underline">
-                  {url}
-                </a>
-                <span>{odie.title}</span>
-                <span>{odie.description}</span>
-              </li>
-            );
-          })}
-        </ul>
+        <div>
+          <h1>
+            <a href="/" className="underline">
+              Odie
+            </a>{" "}
+            directory
+          </h1>
+          <ul className="md:columns-2 lg:columns-3">
+            {odies?.map((odie) => {
+              const url = `https://${odie.subdomain}.odie.us`;
+              return (
+                <li key={odie.subdomain} className="flex flex-col mb-3">
+                  <a href={url} className="underline">
+                    {url}
+                  </a>
+                  <span>{odie.title}</span>
+                  <span>{odie.description}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       )}
     </div>
   );
