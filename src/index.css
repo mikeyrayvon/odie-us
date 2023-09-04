@@ -29,4 +29,13 @@ button {
 .doc-content {
   all: revert;
   margin: 0 auto;
+  @apply pd:!p-0;
+}
+
+.doc-content span {
+  @apply pd:!max-w-full pd:!h-auto;
+}
+
+.doc-content img {
+  @apply pd:!h-auto;
 }
