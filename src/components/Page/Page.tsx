@@ -16,6 +16,9 @@ const Page = () => {
       .then((res) => {
         if (res.data.url) {
           setExists(true);
+          if (res.data.title) {
+            document.title = res.data.title;
+          }
           return axios.get(res.data.url);
         }
         throw new Error();
@@ -39,9 +42,6 @@ const Page = () => {
     axios
       .post(`/api/delete-odie`, {
         subdomain,
-      })
-      .then(() => {
-        window.location.href = "/";
       })
       .catch((err) => {
         console.error(err);
