@@ -52,15 +52,14 @@ const Page = () => {
     return (
       <div className="fixed inset-0 flex justify-center items-center">
         <div className="text-center">
-          <h1>Something went wrong.</h1>
           {exists ? (
             <div>
-              <p>This odie is dead.</p>
+              <h1>This Odie is dead.</h1>
               <button onClick={deleteDeadOdie}>Delete it</button>
             </div>
           ) : (
             <div>
-              <p>This odie doesn't exist.</p>
+              <h1>This Odie doesn't exist.</h1>
               <p>
                 <a href="https://odie.us/" className="underline">
                   But you can make it.

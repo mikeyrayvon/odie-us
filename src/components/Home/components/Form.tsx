@@ -9,25 +9,25 @@ const Form = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     setSuccess(false);
-    setError(false);
+    setError("");
 
-    const invalid =
-      !subdomain ||
-      !url ||
-      !title ||
-      !url.includes("https://docs.google.com/document/d/") ||
-      !SUBDOMAIN_REGEXP.exec(subdomain);
+    if (!subdomain || !SUBDOMAIN_REGEXP.exec(subdomain)) {
+      setError("Invalid subdomain");
+      return;
+    }
 
-    if (process.env.NODE_ENV !== "development") {
-      if (invalid) {
-        return;
-      }
+    if (
+      !url.startsWith("https://docs.google.com/document/d/") ||
+      !url.endsWith("/pub")
+    ) {
+      setError("Invalid url");
+      return;
     }
 
     axios
@@ -40,14 +40,18 @@ const Form = () => {
         timestamp: Date.now(),
       })
       .then((res) => {
+        if (res.data.error) {
+          throw new Error(res.data.error);
+        }
+
         setSuccess(true);
         setUrl("");
         setTitle("");
         setDescription("");
       })
       .catch((err) => {
-        setError(true);
-        console.error(err);
+        console.log(error);
+        setError(err.message);
       });
   };
 
@@ -92,7 +96,6 @@ const Form = () => {
           placeholder="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          required
         />
         <input
           type="text"
@@ -114,7 +117,9 @@ const Form = () => {
             >{`https://${subdomain}.odie.us`}</a>
           </span>
         )}
-        {error && <span>There was an error creating your odie</span>}
+        {error && (
+          <span className="text-red-500 block mt-2 font-bold">{error}</span>
+        )}
       </div>
     </section>
   );
