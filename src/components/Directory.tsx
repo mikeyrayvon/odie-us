@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import ReactGA from "react-ga4";
 
 const Directory = () => {
   const [odies, setOdies] = useState<
@@ -13,10 +14,17 @@ const Directory = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/directory",
+      title: "Directory",
+    });
+  }, []);
+
+  useEffect(() => {
     axios
       .get(`/api/get-all-odies`)
       .then((res) => {
-        console.log(res.data);
         setOdies(res.data);
       })
       .catch((err) => {

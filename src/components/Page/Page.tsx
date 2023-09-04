@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
+import ReactGA from "react-ga4";
 
 const setBackgroundColor = (doc: Document) => {
   const contentsElement = doc.getElementById("contents");
@@ -39,6 +40,11 @@ const Page = () => {
           setExists(true);
           if (res.data.title) {
             document.title = res.data.title;
+            ReactGA.send({
+              hitType: "pageview",
+              page: subdomain,
+              title: res.data.title,
+            });
           }
           return axios.get(res.data.url);
         }
