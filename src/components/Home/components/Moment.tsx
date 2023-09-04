@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Random = () => {
+const Moment = () => {
   const [subdomain, setSubdomain] = useState("");
 
   useEffect(() => {
+    if (subdomain) {
+      return;
+    }
     axios
       .get("/api/get-random-odie")
       .then((res) => {
@@ -13,22 +16,21 @@ const Random = () => {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
-
-  if (!subdomain) {
-    return null;
-  }
+  }, [subdomain]);
 
   const rootUrl =
     process.env.NODE_ENV === "development" ? "localhost:3000" : "odie.us";
 
   return (
-    <div className="absolute top-[10px] right-[20px] z-1">
-      <a href={`http://${subdomain}.${rootUrl}`} className="block p-1">
-        .
-      </a>
+    <div>
+      <h2>Odie of the moment:</h2>
+      {subdomain && (
+        <a href={`http://${subdomain}.${rootUrl}`} className="underline">
+          {`http://${subdomain}.${rootUrl}`}
+        </a>
+      )}
     </div>
   );
 };
 
-export default Random;
+export default Moment;

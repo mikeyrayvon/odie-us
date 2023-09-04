@@ -6,7 +6,6 @@ import Random from "./components/Random";
 let rootHostLength = process.env.NODE_ENV === "development" ? 1 : 2;
 
 function App() {
-  console.log("render App");
   const host = useMemo(() => window.location.host, []);
   return (
     <div className="App w-[90%] mx-auto lg:w-[1000px]">

@@ -8,9 +8,14 @@ const Form = () => {
   const [url, setUrl] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    setSuccess(false);
+    setError(false);
 
     const invalid =
       !subdomain ||
@@ -35,7 +40,14 @@ const Form = () => {
         timestamp: Date.now(),
       })
       .then((res) => {
-        console.log(res);
+        setSuccess(true);
+        setUrl("");
+        setTitle("");
+        setDescription("");
+      })
+      .catch((err) => {
+        setError(true);
+        console.error(err);
       });
   };
 
@@ -97,7 +109,18 @@ const Form = () => {
           Odie!
         </button>
       </form>
-      <div id="response"></div>
+      <div id="response">
+        {success && (
+          <span>
+            Your odie was created at
+            <a
+              href={`https://${subdomain}.odie.us`}
+              className="underline"
+            >{`https://${subdomain}.odie.us`}</a>
+          </span>
+        )}
+        {error && <span>There was an error creating your odie</span>}
+      </div>
     </section>
   );
 };
