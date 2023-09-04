@@ -1,6 +1,27 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 
+const setBackgroundColor = (doc: Document) => {
+  const contentsElement = doc.getElementById("contents");
+  const docContentElement = doc.querySelector(".doc-content");
+  if (docContentElement) {
+    const cssRules =
+      contentsElement?.getElementsByTagName("style")[0].sheet?.cssRules;
+    const docContentClass = docContentElement.classList[0];
+    if (cssRules?.length) {
+      for (let i = 0; i < cssRules?.length; i++) {
+        const rule = cssRules[i] as CSSStyleRule;
+        if (rule.selectorText === `.${docContentClass}`) {
+          if (rule.style.backgroundColor) {
+            document.body.style.backgroundColor = rule.style.backgroundColor;
+          }
+          break;
+        }
+      }
+    }
+  }
+};
+
 const Page = () => {
   const subdomain = useMemo(() => window.location.host.split(".")[0], []);
   const [contents, setContents] = useState("");
@@ -26,9 +47,11 @@ const Page = () => {
       .then((res) => {
         if (res?.data) {
           const doc = new DOMParser().parseFromString(res.data, "text/html");
-          if (doc.getElementById("contents")?.innerHTML) {
-            setContents(doc.getElementById("contents")?.innerHTML as string);
+          const contentsElement = doc.getElementById("contents");
+          if (contentsElement?.innerHTML) {
+            setContents(contentsElement?.innerHTML as string);
           }
+          setBackgroundColor(doc);
         } else {
           throw new Error();
         }
@@ -76,7 +99,7 @@ const Page = () => {
   }
 
   return (
-    <div className="mx-auto w-[90%]">
+    <div className="mx-auto w-[96%]">
       <div dangerouslySetInnerHTML={{ __html: contents }} />
     </div>
   );

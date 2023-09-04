@@ -29,7 +29,7 @@ button {
 .doc-content {
   all: revert;
   margin: 0 auto;
-  @apply pd:!p-0;
+  @apply pd:!px-6 pd:!py-12;
 }
 
 .doc-content span {
