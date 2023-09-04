@@ -38,7 +38,7 @@ const Directory = () => {
             </a>{" "}
             directory
           </h1>
-          <ul className="md:columns-2 lg:columns-3">
+          <ul className="md:columns-2 lg:columns-3 break-all">
             {odies?.map((odie) => {
               const url = `https://${odie.subdomain}.odie.us`;
               return (
