@@ -58,11 +58,10 @@ const Form = () => {
   return (
     <section className="border" style={{ borderStyle: "inset" }}>
       <h2>Make a new Odie</h2>
-      <p className="mb-4">
-        Open your google doc and File {">"} Publish to the web. Click 'Publish'.
-        The link it gives you is your published doc url
-      </p>
-      <form className="flex flex-col gap-2" onSubmit={(e) => handleSubmit(e)}>
+      <form
+        className="flex flex-col gap-2 mt-2"
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <div>
           <div className="flex flex-no-wrap">
             <input
@@ -80,15 +79,25 @@ const Form = () => {
             only lowercase letters (no accents), numbers and hyphens
           </p>
         </div>
-        <input
-          type="text"
-          name="url"
-          id="url"
-          placeholder="published doc url"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          required
-        />
+        <div>
+          <p className="mb-4 text-xs">
+            Open your google doc and go <strong>File</strong> {">"}
+            <strong>Share</strong> {">"} <strong>Publish to web</strong>. <br />
+            Click <strong>Publish</strong> and copy the <strong>Link</strong>.
+            <br />
+            This is your <em>published doc url</em>.<br />
+            (Hint: it ends with "/pub")
+          </p>
+          <input
+            type="text"
+            name="url"
+            id="url"
+            placeholder="published doc url"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            required
+          />
+        </div>
         <input
           type="text"
           name="title"

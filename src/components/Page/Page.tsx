@@ -65,7 +65,7 @@ const Page = () => {
       .catch((err) => {
         setError(true);
       });
-  }, [subdomain]);
+  }, []);
 
   const deleteDeadOdie = () => {
     axios
