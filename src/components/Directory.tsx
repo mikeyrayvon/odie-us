@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "../index.css";
 
 const Directory = () => {
   const [odies, setOdies] = useState<

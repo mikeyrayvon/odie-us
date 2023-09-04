@@ -2,7 +2,6 @@ import About from "./components/About";
 import Ascii from "./components/Ascii";
 import Form from "./components/Form";
 import Header from "./components/Header";
-import "../../index.css";
 
 const Home = () => {
   return (
