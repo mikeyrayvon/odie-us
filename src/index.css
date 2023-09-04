@@ -21,3 +21,7 @@ h1 {
 h2 {
   @apply font-bold text-lg mb-1;
 }
+
+button {
+  @apply border border-black bg-gray-100 rounded p-2;
+}

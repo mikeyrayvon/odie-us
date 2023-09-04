@@ -102,12 +102,7 @@ const Form = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <button
-          className="border border-black bg-gray-100 rounded py-2"
-          type="submit"
-        >
-          Odie!
-        </button>
+        <button type="submit">Odie!</button>
       </form>
       <div id="response">
         {success && (

@@ -7,7 +7,7 @@ const supabase = createClient(
 );
 
 const handler = async (request: VercelRequest, response: VercelResponse) => {
-  if (!request.body) response.status(500).send({ body: "error: no data" });
+  if (!request.body) response.status(500).send({ body: "error: no query" });
 
   let { data, error } = await supabase
     .from(process.env.REACT_APP_TABLE as string)
@@ -25,7 +25,13 @@ const handler = async (request: VercelRequest, response: VercelResponse) => {
     });
   }
 
-  response.status(200).send(data);
+  if (data && data.length > 0) {
+    response.status(200).send(data[0]);
+    return;
+  }
+
+  response.status(204).send({ body: "error: no data" });
+  return;
 };
 
 export default handler;
