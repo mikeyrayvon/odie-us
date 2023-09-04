@@ -14,6 +14,7 @@ const Directory = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    document.title = "Odie directory";
     ReactGA.send({
       hitType: "pageview",
       page: "/directory",
