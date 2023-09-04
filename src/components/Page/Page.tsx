@@ -43,6 +43,9 @@ const Page = () => {
       .post(`/api/delete-odie`, {
         subdomain,
       })
+      .then(() => {
+        window.location.href = "/";
+      })
       .catch((err) => {
         console.error(err);
       });
