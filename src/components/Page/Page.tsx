@@ -9,7 +9,7 @@ const Page = () => {
   useEffect(() => {
     console.log("calling useEffect");
     axios
-      .post(`/.netlify/functions/get-odie`, {
+      .post(`/api/get-odie`, {
         subdomain,
         env: process.env.NODE_ENV,
       })

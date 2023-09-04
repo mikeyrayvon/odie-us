@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import axios from "axios";
 
-const REGEXP = /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/;
+export const SUBDOMAIN_REGEXP = /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/;
 
 const Form = () => {
   const [subdomain, setSubdomain] = useState("");
@@ -16,8 +16,8 @@ const Form = () => {
       !subdomain ||
       !url ||
       !title ||
-      !subdomain.includes("https://docs.google.com/document/d/") ||
-      !REGEXP.exec(subdomain);
+      !url.includes("https://docs.google.com/document/d/") ||
+      !SUBDOMAIN_REGEXP.exec(subdomain);
 
     if (process.env.NODE_ENV !== "development") {
       if (invalid) {
@@ -26,7 +26,7 @@ const Form = () => {
     }
 
     axios
-      .post(`/.netlify/functions/create-odie`, {
+      .post(`/api/create-odie`, {
         subdomain,
         url,
         title,

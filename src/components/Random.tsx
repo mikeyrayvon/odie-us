@@ -6,8 +6,9 @@ const Random = () => {
 
   useEffect(() => {
     axios
-      .get("/.netlify/functions/get-random-odie")
+      .get("/api/get-random-odie")
       .then((res) => {
+        console.log(res);
         setSubdomain(res.data.subdomain);
       })
       .catch((err) => {
@@ -20,11 +21,11 @@ const Random = () => {
   }
 
   const rootUrl =
-    process.env.NODE_ENV === "development" ? "localhost:8888" : "odie.us";
+    process.env.NODE_ENV === "development" ? "localhost:3000" : "odie.us";
 
   return (
     <div className="absolute top-[10px] right-[20px] z-1">
-      <a href={`${subdomain}.${rootUrl}`} className="block p-1">
+      <a href={`http://${subdomain}.${rootUrl}`} className="block p-1">
         .
       </a>
     </div>
