@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import axios from "axios";
 
-export const SUBDOMAIN_REGEXP = /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/;
+export const SUBDOMAIN_REGEXP = /^[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]$/;
 
 const Form = () => {
   const [subdomain, setSubdomain] = useState("");
@@ -76,7 +76,7 @@ const Form = () => {
             <span className="inline-block ml-1 mt-1">.odie.us</span>
           </div>
           <p className="text-xs">
-            only lowercase letters (no accents), numbers and hyphens
+            only lowercase letters (no accents), numbers and hyphens!
           </p>
         </div>
         <div>

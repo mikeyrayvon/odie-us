@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { createClient } from "@supabase/supabase-js";
 
-export const SUBDOMAIN_REGEXP = /^[a-zA-Z0-9][a-zA-Z0-9.-]+[a-zA-Z0-9]$/;
+export const SUBDOMAIN_REGEXP = /^[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]$/;
 
 const supabase = createClient(
   process.env.REACT_APP_ENDPOINT as string,
