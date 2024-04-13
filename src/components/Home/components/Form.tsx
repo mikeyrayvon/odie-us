@@ -70,7 +70,12 @@ const Form = () => {
               id="subdomain"
               placeholder="subdomain"
               value={subdomain}
-              onChange={(e) => setSubdomain(e.target.value.toLowerCase())}
+              onChange={(e) => {
+                const val = e.target.value.toLowerCase();
+                if (SUBDOMAIN_REGEXP.exec(val)) {
+                  setSubdomain(val);
+                }
+              }}
               required
             />{" "}
             <span className="inline-block ml-1 mt-1">.odie.us</span>
