@@ -8,7 +8,7 @@ const Directory = () => {
       subdomain: string;
       title: string;
       description: string;
-      views: number;
+      timestamp: number;
     }[]
   >([]);
   const [error, setError] = useState("");
@@ -61,7 +61,6 @@ const Directory = () => {
                   </a>
                   <span className="font-bold">{odie.title}</span>
                   <span>{odie.description}</span>
-                  <span className="text-xs">visits: {odie.views}</span>
                 </li>
               );
             })}
